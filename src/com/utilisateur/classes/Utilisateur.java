@@ -21,4 +21,10 @@ public class Utilisateur {
 		this.motDePasse = modepasse;
 	}
 	
+	public Utilisateur nouvelUtilisateur(String login, String moDePasse){
+		Utilisateur user = new Utilisateur();
+		// TODO
+		
+		return user ;
+	}
 }
