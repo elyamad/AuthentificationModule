@@ -18,15 +18,26 @@ public class UtilisateurTest {
 	
 	@Test
 	public void nouvelUtilisateurTest() throws IOException{
-		Assert.assertNotNull(userC.nouvelUtilisateur("Login","motdepasse"));
+		Assert.assertNotNull(userC.nouvelUtilisateur("Bourel","motdepasse"));
 	}
 	
+	@Test
 	public void EncryptDecryptTest() throws IOException{
-		Utilisateur user = userC.nouvelUtilisateur("login","motdepasse");
+		Utilisateur user = userC.nouvelUtilisateur("Bourel","motdepasse");
 		
 		String Encryptedpassword = userC.EncryptPassword(user.getMotDePasse());
 		String Decryptedpassword = userC.DecryptPassword(Encryptedpassword);
 		
 		Assert.assertEquals(user.getMotDePasse(), Decryptedpassword);
+	}
+	
+	@Test
+	public void AddToXMLTest(){
+		try {
+			Utilisateur user = userC.nouvelUtilisateur("MarchaZ","motdepasse");
+			Assert.assertTrue(userC.AddToXML(user));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -63,6 +63,7 @@ public class UtilisateurController {
 	}
 	
 	public boolean AddToXML(Utilisateur user) throws IOException {
+		boolean added = false ;
 		try {
 			 XStream xstream = new XStream(new DomDriver());
 			 xstream.alias("Utilisateur", Utilisateur.class);
@@ -70,21 +71,23 @@ public class UtilisateurController {
 			 xstream.addImplicitCollection(UtilisateurList.class, "UserList");
 			 
 			 FileInputStream  fis = new FileInputStream (XmlPath);
+			 
 			 UserList = (UtilisateurList) xstream.fromXML(fis) ;
 			 
-			 if(!UserList.contains(user)) UserList.add(user);
+			 if(!UserList.contains(user)) { 
+				UserList.add(user);
+				added = true;
+			 }
 			 
 			 FileOutputStream fos = new FileOutputStream(XmlPath);
 			 
 			 try {
-				// Sérialisation de l'objet user
+				// Sérialisation de l'objet UserList
 				 xstream.toXML(UserList, fos);
 		    } finally {
 		    	// On s'assure de fermer le flux quoi qu'il arrive
 		    	fos.close();
 		    }
-			
-			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

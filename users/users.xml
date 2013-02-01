@@ -1,6 +1,14 @@
 <Utilisateurs>
   <Utilisateur>
-    <login>Login</login>
-    <motDePasse>KByI7qmjaIvsobQqAitjZjXnjJq59kDP</motDePasse>
+    <login>Bourel</login>
+    <motDePasse>UJHoNuW/v7NFVfwkqKbqOLWolscXupXQ</motDePasse>
+  </Utilisateur>
+  <Utilisateur>
+    <login>Marchal</login>
+    <motDePasse>FmsgLbhVfPO1pl4O5fRsy30IoqomC4sP</motDePasse>
+  </Utilisateur>
+  <Utilisateur>
+    <login>MarchaZ</login>
+    <motDePasse>Pg52DlIT+1Y2KxCHYctnFvbET5kmXzoj</motDePasse>
   </Utilisateur>
 </Utilisateurs>
