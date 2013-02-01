@@ -5,6 +5,7 @@ public class Utilisateur {
 	private String login;
 	private String motDePasse;
 
+
 	public String getLogin() {
 		return this.login;
 	}
@@ -21,10 +22,5 @@ public class Utilisateur {
 		this.motDePasse = modepasse;
 	}
 	
-	public Utilisateur nouvelUtilisateur(String login, String moDePasse){
-		Utilisateur user = new Utilisateur();
-		// TODO
-		
-		return user ;
-	}
+	
 }
