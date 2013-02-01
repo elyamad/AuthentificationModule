@@ -3,7 +3,8 @@ package com.utilisateur.classes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilisateurList {
+
+public class UtilisateurList  {
 
 	List<Utilisateur> UserList;
 	
@@ -11,7 +12,22 @@ public class UtilisateurList {
 		UserList = new ArrayList<Utilisateur>();
 	}
 	
-	public void add(Utilisateur user){
-		UserList.add(user);
+	public boolean add(Utilisateur user){
+		return UserList.add(user);
+	}
+	
+	/**
+	 * 
+	 * @param user Utilisateur
+	 * @return true si user existe dans la liste
+	 *         return false sinon .
+	 */
+	
+	public boolean contains(Utilisateur user) {
+		for (int i=0; i<UserList.size();i++){
+			if(UserList.get(i).getLogin().equals(user.getLogin()))
+				return true;
+		}
+		return false;
 	}
 }

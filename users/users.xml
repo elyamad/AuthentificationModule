@@ -1,4 +1,6 @@
-<Utilisateur>
-  <login>login</login>
-  <motDePasse>rw/+HkSNa8LwI9ZuJf2ba/XFrHJqJ+5S</motDePasse>
-</Utilisateur>
+<Utilisateurs>
+  <Utilisateur>
+    <login>Login</login>
+    <motDePasse>KByI7qmjaIvsobQqAitjZjXnjJq59kDP</motDePasse>
+  </Utilisateur>
+</Utilisateurs>

@@ -10,22 +10,23 @@ import com.utilisateur.model.UtilisateurController;
 
 public class UtilisateurTest {
 
-	Utilisateur user = new Utilisateur();
-	UtilisateurController userM = new UtilisateurController(user);
+	UtilisateurController userC ;
 	
-	@Test
-	public void nouvelUtilisateurTest() throws IOException{
-		userM.nouvelUtilisateur("login","motdepasse");
-		Assert.assertNotNull(user);
+	public UtilisateurTest() {
+		userC = new UtilisateurController();
 	}
 	
 	@Test
+	public void nouvelUtilisateurTest() throws IOException{
+		Assert.assertNotNull(userC.nouvelUtilisateur("Login","motdepasse"));
+	}
+	
 	public void EncryptDecryptTest() throws IOException{
-		Utilisateur NewUser = userM.nouvelUtilisateur("login","motdepasse");
+		Utilisateur user = userC.nouvelUtilisateur("login","motdepasse");
 		
-		String Encryptedpassword = userM.EncryptPassword(NewUser.getMotDePasse());
-		String Decryptedpassword = userM.DecryptPassword(Encryptedpassword);
+		String Encryptedpassword = userC.EncryptPassword(user.getMotDePasse());
+		String Decryptedpassword = userC.DecryptPassword(Encryptedpassword);
 		
-		Assert.assertEquals(NewUser.getMotDePasse(), Decryptedpassword);
+		Assert.assertEquals(user.getMotDePasse(), Decryptedpassword);
 	}
 }

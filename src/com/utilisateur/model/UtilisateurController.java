@@ -1,10 +1,10 @@
 package com.utilisateur.model;
 
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 
 import org.jasypt.util.text.BasicTextEncryptor;
 
@@ -15,22 +15,10 @@ import com.utilisateur.classes.UtilisateurList;
 
 public class UtilisateurController {
 	
-	Utilisateur user ;
-	
 	String XmlPath ;
-	
 	UtilisateurList UserList ;
 	
-	public Utilisateur getUser() {
-		return user;
-	}
-	
-	public void setUser(Utilisateur user){
-		this.user = user;
-	}
-	
-	public UtilisateurController(Utilisateur usr) {
-		user = new Utilisateur();
+	public UtilisateurController() {
 	    UserList =  new UtilisateurList();	
 		XmlPath = "./users/users.xml";
 	}
@@ -44,8 +32,7 @@ public class UtilisateurController {
 	 * @throws IOException 
 	 */
 	public Utilisateur nouvelUtilisateur(String login, String motDePasse) throws IOException {
-		Utilisateur user = new Utilisateur();
-		user.setLogin(login);
+		Utilisateur user = new Utilisateur(login, motDePasse);
 		user.setMotDePasse(EncryptPassword(motDePasse));
 		AddToXML(user);
 		return user ;
@@ -75,21 +62,23 @@ public class UtilisateurController {
         
 	}
 	
-	public boolean AddToXML(Utilisateur user) throws IOException{
+	public boolean AddToXML(Utilisateur user) throws IOException {
 		try {
 			 XStream xstream = new XStream(new DomDriver());
 			 xstream.alias("Utilisateur", Utilisateur.class);
-			 //xstream.alias("Utilisateurs", UtilisateurList.class);
+			 xstream.alias("Utilisateurs", UtilisateurList.class);
+			 xstream.addImplicitCollection(UtilisateurList.class, "UserList");
 			 
-			// UserList = (UtilisateurList) xstream.fromXML(XmlPath) ;
-			// UserList.add(user);
+			 FileInputStream  fis = new FileInputStream (XmlPath);
+			 UserList = (UtilisateurList) xstream.fromXML(fis) ;
+			 
+			 if(!UserList.contains(user)) UserList.add(user);
 			 
 			 FileOutputStream fos = new FileOutputStream(XmlPath);
-	 
 			 
 			 try {
 				// Sérialisation de l'objet user
-				 xstream.toXML(user, fos);
+				 xstream.toXML(UserList, fos);
 		    } finally {
 		    	// On s'assure de fermer le flux quoi qu'il arrive
 		    	fos.close();
